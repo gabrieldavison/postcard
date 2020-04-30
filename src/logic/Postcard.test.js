@@ -11,7 +11,7 @@ describe("test parameters", () => {
   });
 
   test("postcard has location", () => {
-    expect(testcard.location).toBe("location");
+    expect(testcard.location).toBe("1");
   });
 });
 

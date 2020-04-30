@@ -4,7 +4,7 @@ class Postcard {
     this.id = id;
     this.text = text;
     this.date = new Date();
-    this.location = "location";
+    this.location = `${id}`;
   }
 }
 

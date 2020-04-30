@@ -1,4 +1,5 @@
 import User from "./User";
+
 const appController = (function () {
   let users = [];
   let currentUser = undefined;
@@ -13,14 +14,28 @@ const appController = (function () {
   };
 
   const login = function (username, password) {
-    currentUser = username;
+    if (!users.map((val) => val.username).includes(username)) {
+      return "user does not exist";
+    }
+    if (
+      users.filter((val) => val.username === username)[0].password !== password
+    ) {
+      return "username and password do not match";
+    }
+
+    appController.currentUser = username;
+  };
+
+  const logout = function () {
+    appController.currentUser = undefined;
   };
 
   return {
-    addUser: addUser,
-    login: login,
     users: users,
     currentUser: currentUser,
+    addUser: addUser,
+    login: login,
+    logout: logout,
   };
 })();
 

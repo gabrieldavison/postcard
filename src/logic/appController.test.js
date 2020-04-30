@@ -26,13 +26,28 @@ describe("tests addUser", () => {
 
 describe("tests login", () => {
   test("login updates currentUser", () => {
+    appController.addUser("user1", "password");
     appController.login("user1", "password");
     expect(appController.currentUser).toBe("user1");
   });
 
-  xtest("login returns error if username and password don't match", () => {
-    expect(appController.login("user1", "wrongPassword")).toBe(
-      "username and password dont match"
+  test("login returns error if user does not exist", () => {
+    expect(appController.login("user10", "wrongPassword")).toBe(
+      "user does not exist"
     );
+  });
+
+  test("login returns error if username and password do not match", () => {
+    expect(appController.login("user1", "wrongPassword")).toBe(
+      "username and password do not match"
+    );
+  });
+});
+
+describe("tests logout", () => {
+  test("logout sets user to undefined", () => {
+    appController.login("user1", "password");
+    appController.logout();
+    expect(appController.currentUser).toBe(undefined);
   });
 });
