@@ -8,6 +8,7 @@ const Activity = (props) => {
           key={val.id}
           postcard={val}
           handleLike={props.handleLike}
+          liked={props.liked}
         />
       ))}
     </div>

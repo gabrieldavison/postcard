@@ -8,8 +8,9 @@ import Feed from "./Feed";
 mockUsers();
 const App = () => {
   //username of current user
-  const [currentUsername, updateCurrentUsername] = useState(undefined);
-  const [userIndex, updateUserIndex] = useState(undefined);
+  const [currentUsername, updateCurrentUsername] = useState("gabrieldavison");
+  const [userIndex, updateUserIndex] = useState(5);
+  const [liked, updateLiked] = useState(appController.users[5].liked);
 
   function userChange() {
     updateCurrentUsername(appController.currentUser);
@@ -18,10 +19,12 @@ const App = () => {
         (val) => val.username === appController.currentUser
       )
     );
+    updateLiked(appController.users[userIndex].liked.concat());
   }
 
   function handleLike(id) {
     appController.users[userIndex].like(id);
+    updateLiked(appController.users[userIndex].liked.concat());
   }
 
   return (
@@ -34,19 +37,13 @@ const App = () => {
         />
       ) : (
         <Feed
-          //passes the entire user object for logged in user
-          // user={appController.users.reduce((acc, val) => {
-          //   if (val.username === currentUsername) {
-          //     acc = val;
-          //   }
-          //   return acc;
-          // })}
           user={appController.users[userIndex]}
           //passes an array of all postcards to feed
           allPostcards={appController.users
             .map((user) => user.postcards)
             .reduce((prev, curr) => prev.concat(curr))}
           handleLike={handleLike}
+          liked={liked}
         />
       )}
     </div>

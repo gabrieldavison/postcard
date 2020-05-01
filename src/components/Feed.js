@@ -10,6 +10,7 @@ const Feed = (props) => {
           return props.user.followed.includes(val.owner);
         })}
         handleLike={props.handleLike}
+        liked={props.liked}
       />
     </div>
   );
