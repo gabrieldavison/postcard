@@ -2,8 +2,6 @@ import React from "react";
 import Activity from "./Activity";
 
 const Feed = (props) => {
-  console.log(props.allPostcards);
-  console.log(props.user);
   return (
     <div>
       <h1>{props.user.username}</h1>
