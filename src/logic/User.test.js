@@ -54,12 +54,9 @@ describe("tests like", () => {
     testUser.like("username_0");
     expect(testUser.liked[0]).toBe("username_0");
   });
-});
-
-describe("tests unlike", () => {
-  test("removes image from liked array", () => {
-    testUser.unlike("username_0");
-    expect(testUser.liked[0]).toBe(undefined);
+  test("removes image if already liked", () => {
+    testUser.like("username_0");
+    expect(testUser.liked.length).toBe(0);
   });
 });
 

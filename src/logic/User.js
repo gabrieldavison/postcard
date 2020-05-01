@@ -33,12 +33,16 @@ class User {
   }
 
   like(id) {
-    this.liked.push(id);
+    if (this.liked.includes(id)) {
+      this.liked.splice(this.liked.indexOf(id), 1);
+    } else {
+      this.liked.push(id);
+    }
   }
 
-  unlike(id) {
-    this.liked.splice(this.liked.indexOf(id), 1);
-  }
+  // unlike(id) {
+  //   this.liked.splice(this.liked.indexOf(id), 1);
+  // }
 
   follow(username) {
     this.followed.push(username);
