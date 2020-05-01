@@ -1,5 +1,5 @@
 import User from "./User";
-
+import mockUsers from "./mockUsers";
 const appController = (function () {
   let users = [];
   let currentUser = undefined;

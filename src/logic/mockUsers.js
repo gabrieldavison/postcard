@@ -2,12 +2,12 @@ import appController from "./appController";
 function mockUsers() {
   //names for each of the 6 users
   const userNames = [
-    "martinParr",
-    "dianeArbus",
-    "joelMeyerowitz",
-    "fredHerzog",
-    "robertFrank",
-    "gabrielDavison",
+    "martinparr",
+    "dianearbus",
+    "joelmeyerowitz",
+    "fredherzog",
+    "robertfrank",
+    "gabrieldavison",
   ];
   //generates a user object for each name in the array
   userNames.forEach((item) => {
