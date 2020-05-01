@@ -8,15 +8,15 @@ import Feed from "./Feed";
 mockUsers();
 const App = () => {
   //username of current user
-  const [currentUserName, updateCurrentUserName] = useState("gabrieldavison");
+  const [currentUsername, updateCurrentUsername] = useState("gabrieldavison");
 
   function userChange() {
-    updateCurrentUserName(appController.currentUser);
+    updateCurrentUsername(appController.currentUser);
   }
 
   return (
     <div>
-      {currentUserName === undefined ? (
+      {currentUsername === undefined ? (
         <Login
           loginUser={appController.login}
           addUser={appController.addUser}
@@ -24,6 +24,13 @@ const App = () => {
         />
       ) : (
         <Feed
+          //passes the entire user object for logged in user
+          user={appController.users.reduce((acc, val) => {
+            if (val.username === currentUsername) {
+              acc = val;
+            }
+            return acc;
+          })}
           //passes an array of all postcards to feed
           allPostcards={appController.users
             .map((user) => user.postcards)
