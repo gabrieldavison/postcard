@@ -9,6 +9,7 @@ const Feed = (props) => {
         renderPostcards={props.allPostcards.filter((val) => {
           return props.user.followed.includes(val.owner);
         })}
+        handleLike={props.handleLike}
       />
     </div>
   );

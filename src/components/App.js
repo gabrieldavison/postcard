@@ -8,10 +8,20 @@ import Feed from "./Feed";
 mockUsers();
 const App = () => {
   //username of current user
-  const [currentUsername, updateCurrentUsername] = useState("gabrieldavison");
+  const [currentUsername, updateCurrentUsername] = useState(undefined);
+  const [userIndex, updateUserIndex] = useState();
 
   function userChange() {
     updateCurrentUsername(appController.currentUser);
+  }
+
+  function handleLike(id) {
+    console.log(id);
+    let userIndex = appController.users.findIndex(
+      (val) => val.username === currentUsername
+    );
+    appController.users[userIndex].like(id);
+    console.log(appController.users[userIndex].liked);
   }
 
   return (
@@ -35,6 +45,7 @@ const App = () => {
           allPostcards={appController.users
             .map((user) => user.postcards)
             .reduce((prev, curr) => prev.concat(curr))}
+          handleLike={handleLike}
         />
       )}
     </div>
