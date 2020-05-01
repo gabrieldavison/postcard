@@ -1,7 +1,12 @@
 import React from "react";
+import Activity from "./Activity";
 
-const Feed = () => {
-  return <h1>feed</h1>;
+const Feed = (props) => {
+  return (
+    <div>
+      <Activity />
+    </div>
+  );
 };
 
 export default Feed;

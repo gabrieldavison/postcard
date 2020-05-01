@@ -7,20 +7,28 @@ import Feed from "./Feed";
 //creates mock user accounts
 mockUsers();
 const App = () => {
-  const [currentUser, updateCurrentUser] = useState(undefined);
+  //username of current user
+  const [currentUserName, updateCurrentUserName] = useState("gabrieldavison");
+
   function userChange() {
-    updateCurrentUser(appController.currentUser);
+    updateCurrentUserName(appController.currentUser);
   }
+
   return (
     <div>
-      {currentUser === undefined ? (
+      {currentUserName === undefined ? (
         <Login
           loginUser={appController.login}
           addUser={appController.addUser}
           userChange={userChange}
         />
       ) : (
-        <Feed />
+        <Feed
+          //passes an array of all postcards to feed
+          allPostcards={appController.users
+            .map((user) => user.postcards)
+            .reduce((prev, curr) => prev.concat(curr))}
+        />
       )}
     </div>
   );
