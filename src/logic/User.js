@@ -45,12 +45,16 @@ class User {
   // }
 
   follow(username) {
-    this.followed.push(username);
+    if (this.followed.includes(username)) {
+      this.followed.splice(this.followed.indexOf(username), 1);
+    } else {
+      this.followed.push(username);
+    }
   }
 
-  unfollow(username) {
-    this.followed.splice(this.liked.indexOf(username), 1);
-  }
+  // unfollow(username) {
+  //   this.followed.splice(this.liked.indexOf(username), 1);
+  // }
 }
 
 export default User;

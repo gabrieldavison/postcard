@@ -1,8 +1,9 @@
 import React from "react";
 import PostcardComponent from "./PostcardComponent";
-const Activity = (props) => {
+const Timeline = (props) => {
   return (
     <div>
+      {props.renderPostcards.length === 0 ? <h2>User has no uploads</h2> : null}
       {props.renderPostcards.map((val) => (
         <PostcardComponent
           key={val.id}
@@ -15,4 +16,4 @@ const Activity = (props) => {
   );
 };
 
-export default Activity;
+export default Timeline;

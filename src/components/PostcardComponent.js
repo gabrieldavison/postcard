@@ -18,8 +18,9 @@ const Postcard = (props) => {
       <p className={textClass}>{props.postcard.text}</p>
       <h3>{props.postcard.date.toLocaleString()}</h3>
       <h2>{props.postcard.owner}</h2>
-      <button onClick={() => props.handleLike(props.postcard.id)}>Like</button>
-      <h3>{props.liked.includes(props.postcard.id) ? "Liked!" : null}</h3>
+      <button onClick={() => props.handleLike(props.postcard.id)}>
+        {props.liked.includes(props.postcard.id) ? "Unlike" : "Like"}
+      </button>
     </div>
   );
 };

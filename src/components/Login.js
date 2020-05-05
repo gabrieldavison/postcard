@@ -11,7 +11,7 @@ const Login = (props) => {
       updateErrorMessage(props.loginUser(username, password));
       updateUsername("");
       updatePassword("");
-      props.userChange();
+      // props.userChange();
     } else {
       //adds new user and then logs them in
       props.addUser(username, password);

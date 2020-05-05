@@ -15,3 +15,8 @@ test("5 of the users have 5 images", () => {
 test("user 6 follows the other 5 users", () => {
   expect(appController.users[5].followed.length).toBe(5);
 });
+
+test("first 3 users have liked 3 images", () => {
+  expect(appController.users[0].liked.length).toBe(3);
+  expect(appController.users[0].liked[1]).toBe("dianearbus_1");
+});

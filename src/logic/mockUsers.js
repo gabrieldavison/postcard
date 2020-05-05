@@ -25,6 +25,18 @@ function mockUsers() {
   for (let i = 0; i < 5; i++) {
     appController.users[5].follow(userNames[i]);
   }
+
+  for (let i = 0; i < 3; i++) {
+    appController.users[5].like(`martinparr_${i}`);
+  }
+  // loop gets first 3 users to like the first 3 images of the user in front
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      appController.users[i].like(
+        `${appController.users[i + 1].username}_${j}`
+      );
+    }
+  }
 }
 
 export default mockUsers;

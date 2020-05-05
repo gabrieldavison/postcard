@@ -68,8 +68,8 @@ describe("tests follow", () => {
 });
 
 describe("tests unfollow", () => {
-  test("removes image from liked array", () => {
-    testUser.unfollow("username");
+  test("removes user from followed array", () => {
+    testUser.follow("username");
     expect(testUser.followed[0]).toBe(undefined);
   });
 });
