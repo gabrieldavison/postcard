@@ -8,17 +8,31 @@ const Login = (props) => {
   function loginUser(e) {
     e.preventDefault();
     if (loginSignUp === "login") {
-      props.loginUser(username, password);
-      updateUsername("");
-      updatePassword("");
-      // props.userChange();
+      const authentication = props.authenticate(username, password);
+      console.log(authentication);
+      // if authentication is false display error message
+      if (authentication[0] === false) {
+        updateErrorMessage(authentication[1]);
+        updateUsername("");
+        updatePassword("");
+      } else {
+        props.loginUser(username, password);
+        updateUsername("");
+        updatePassword("");
+      }
     } else {
-      //adds new user and then logs them in
-      props.addUser(username, password);
-      props.loginUser(username, password);
-      updateUsername("");
-      updatePassword("");
-      props.userChange();
+      const checkUsername = props.checkUsername(username);
+      if (checkUsername[0] === false) {
+        updateErrorMessage(checkUsername[1]);
+        updateUsername("");
+        updatePassword("");
+      } else {
+        //adds new user and then logs them in
+        props.addUser(username, password);
+        props.loginUser(username, password);
+        updateUsername("");
+        updatePassword("");
+      }
     }
   }
   return (

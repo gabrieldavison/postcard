@@ -16,7 +16,7 @@ const Feed = (props) => {
   };
   return (
     <div>
-      <Nav currentUsername={props.currentUsername} />
+      <Nav currentUsername={props.currentUsername} logout={props.logout} />
       <Search
         handleSearch={props.handleSearch}
         updateSearchedUser={props.updateSearchedUser}

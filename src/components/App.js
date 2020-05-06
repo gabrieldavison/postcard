@@ -20,6 +20,16 @@ const App = () => {
   const [searchedUser, updateSearchedUser] = useState("");
   const [navigateSearchedUser, updateNavigateSearchedUser] = useState("");
 
+  function logout() {
+    console.log("logout");
+    appController.logout;
+    updateCurrentUsername(undefined);
+    updateUserIndex();
+    updateLiked();
+    updateFollowed();
+    navigate("/");
+  }
+
   function handleSearch() {
     if (
       !appController.users.map((val) => val.username).includes(searchedUser)
@@ -79,9 +89,7 @@ const App = () => {
   }
 
   function handleAddPostcard(text) {
-    console.log(appController.users[userIndex].postcards);
     appController.users[userIndex].addPostcard(text);
-    console.log(appController.users[userIndex].postcards);
   }
 
   return (
@@ -90,12 +98,14 @@ const App = () => {
         <Login
           loginUser={handleLoginUser}
           addUser={appController.addUser}
-          userChange={userChange}
+          authenticate={appController.authenticate}
+          checkUsername={appController.checkUsername}
         />
       ) : (
         <div>
           <Router>
             <Feed
+              logout={logout}
               currentUsername={currentUsername}
               handleSearch={handleSearch}
               updateSearchedUser={updateSearchedUser}

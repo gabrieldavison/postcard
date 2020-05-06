@@ -51,13 +51,19 @@ const UserComponent = (props) => {
       </div>
       {uploadsLikes === "uploads" ? (
         //Timeline for uploads view
-        <Timeline
-          renderPostcards={props.user.postcards}
-          handleLike={props.handleLike}
-          liked={props.liked}
-        />
+        props.user.postcards.length === 0 ? (
+          <h2>No uploads to display.</h2>
+        ) : (
+          <Timeline
+            renderPostcards={props.user.postcards}
+            handleLike={props.handleLike}
+            liked={props.liked}
+          />
+        )
+      ) : //Timeline for likes view
+      props.user.liked === 0 ? (
+        <h2>No likes to display.</h2>
       ) : (
-        //Timeline for likes view
         <Timeline
           renderPostcards={props.allPostcards.filter((val) =>
             props.user.liked.includes(val.id)

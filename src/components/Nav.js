@@ -7,6 +7,7 @@ const Nav = (props) => {
       <Link to="/">Feed</Link>
       <Link to="/user">{props.currentUsername}</Link>
       <Link to="/upload">Upload</Link>
+      <button onClick={props.logout}>Logout</button>
     </div>
   );
 };
