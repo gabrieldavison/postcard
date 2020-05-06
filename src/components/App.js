@@ -89,7 +89,9 @@ const App = () => {
   }
 
   function handleAddPostcard(text) {
+    console.log(appController.users[userIndex].postcards);
     appController.users[userIndex].addPostcard(text);
+    console.log(appController.users[userIndex].postcards);
   }
 
   return (
