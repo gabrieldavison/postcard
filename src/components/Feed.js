@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import { Link } from "@reach/router";
 const Feed = (props) => {
   const [activityDiscover, updateActivityDiscover] = useState("activity");
+
   const discoverPostcards = () => {
     let renderIDs = props.allUsers
       .filter((val) => props.user.followed.includes(val.username))
@@ -49,15 +50,21 @@ const Feed = (props) => {
       </div>
       {activityDiscover === "activity" ? (
         //Timeline for activity view
-        <Timeline
-          renderPostcards={props.allPostcards.filter((val) => {
-            return props.user.followed.includes(val.owner);
-          })}
-          handleLike={props.handleLike}
-          liked={props.liked}
-        />
+        props.followed.length === 0 ? (
+          <h2>You havent followed anyone yet...</h2>
+        ) : (
+          <Timeline
+            renderPostcards={props.allPostcards.filter((val) => {
+              return props.user.followed.includes(val.owner);
+            })}
+            handleLike={props.handleLike}
+            liked={props.liked}
+          />
+        )
+      ) : //Timeline for discover view
+      props.followed.length === 0 ? (
+        <h2>You havent followed anyone yet...</h2>
       ) : (
-        //Timeline for discover view
         <Timeline
           renderPostcards={discoverPostcards()}
           handleLike={props.handleLike}

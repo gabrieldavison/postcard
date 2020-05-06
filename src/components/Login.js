@@ -8,7 +8,7 @@ const Login = (props) => {
   function loginUser(e) {
     e.preventDefault();
     if (loginSignUp === "login") {
-      updateErrorMessage(props.loginUser(username, password));
+      props.loginUser(username, password);
       updateUsername("");
       updatePassword("");
       // props.userChange();

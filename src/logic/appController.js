@@ -13,6 +13,17 @@ const appController = (function () {
     users.push(newUser);
   };
 
+  const authenticate = function (username, password) {
+    if (!users.map((val) => val.username).includes(username)) {
+      return "user does not exist";
+    }
+    if (
+      users.filter((val) => val.username === username)[0].password !== password
+    ) {
+      return "username and password do not match";
+    }
+  };
+
   const login = function (username, password) {
     if (!users.map((val) => val.username).includes(username)) {
       return "user does not exist";
@@ -36,6 +47,7 @@ const appController = (function () {
     addUser: addUser,
     login: login,
     logout: logout,
+    authenticate: authenticate,
   };
 })();
 

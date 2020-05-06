@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Login from "./Login";
 import appController from "../logic/appController";
@@ -14,6 +14,7 @@ const App = () => {
   //username of current user
   const [currentUsername, updateCurrentUsername] = useState(undefined);
   const [userIndex, updateUserIndex] = useState();
+
   const [liked, updateLiked] = useState();
   const [followed, updateFollowed] = useState();
   const [searchedUser, updateSearchedUser] = useState("");
@@ -32,16 +33,26 @@ const App = () => {
 
   function handleLoginUser(username, password) {
     appController.login(username, password);
-    console.log(appController.currentUser);
+
     updateCurrentUsername(appController.currentUser);
-    console.log(currentUsername);
+
     updateUserIndex(
       appController.users.findIndex(
         (val) => val.username === appController.currentUser
       )
     );
-    updateLiked(appController.users[userIndex].liked.concat());
-    updateFollowed(appController.users[userIndex].followed.concat());
+
+    updateLiked(
+      appController.users
+        .find((val) => (val.username = username))
+        .liked.concat()
+    );
+
+    updateFollowed(
+      appController.users
+        .find((val) => (val.username = username))
+        .followed.concat()
+    );
   }
 
   function userChange() {
@@ -111,7 +122,7 @@ const App = () => {
                 .map((user) => user.postcards)
                 .reduce((prev, curr) => prev.concat(curr))}
               handleLike={handleLike}
-              liked={liked}
+              liked={appController.users[userIndex].liked}
             />
             {/* Component for searched user */}
             <UserComponent
