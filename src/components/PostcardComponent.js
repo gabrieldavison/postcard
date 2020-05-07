@@ -21,6 +21,11 @@ const Postcard = (props) => {
       <button onClick={() => props.handleLike(props.postcard.id)}>
         {props.liked.includes(props.postcard.id) ? "Unlike" : "Like"}
       </button>
+      {props.loggedIn === true ? (
+        <button onClick={() => props.handleDeletePostcard(props.postcard.id)}>
+          Delete
+        </button>
+      ) : null}
     </div>
   );
 };

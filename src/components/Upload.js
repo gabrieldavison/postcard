@@ -29,7 +29,7 @@ const Upload = (props) => {
   }
   return (
     <div>
-      <Nav currentUsername={props.currentUsername} />
+      <Nav currentUsername={props.currentUsername} logout={props.logout} />
       <h1>Upload a Postcard</h1>
       {checkLastUpload() ? (
         <div>

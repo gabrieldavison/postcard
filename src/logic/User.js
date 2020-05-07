@@ -29,7 +29,11 @@ class User {
   }
 
   deletePostcard(id) {
-    this.postcards.splice(this.postcards.indexOf(id), 1);
+    this.postcards.splice(
+      this.postcards.indexOf(this.postcards.find((val) => val.id === id)),
+      1
+    );
+    console.log(this.postcards);
   }
 
   like(id) {
@@ -40,10 +44,6 @@ class User {
     }
   }
 
-  // unlike(id) {
-  //   this.liked.splice(this.liked.indexOf(id), 1);
-  // }
-
   follow(username) {
     if (this.followed.includes(username)) {
       this.followed.splice(this.followed.indexOf(username), 1);
@@ -51,10 +51,6 @@ class User {
       this.followed.push(username);
     }
   }
-
-  // unfollow(username) {
-  //   this.followed.splice(this.liked.indexOf(username), 1);
-  // }
 }
 
 export default User;

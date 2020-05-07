@@ -5,7 +5,7 @@ import Nav from "./Nav";
 const UserNotFound = (props) => {
   return (
     <div>
-      <Nav currentUsername={props.currentUsername} />
+      <Nav currentUsername={props.currentUsername} logout={props.logout} />
       <Search />
       <h1>User Not Found</h1>
     </div>

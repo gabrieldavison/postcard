@@ -10,6 +10,8 @@ const Timeline = (props) => {
           postcard={val}
           handleLike={props.handleLike}
           liked={props.liked}
+          loggedIn={props.loggedIn}
+          handleDeletePostcard={props.handleDeletePostcard}
         />
       ))}
     </div>

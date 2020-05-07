@@ -6,9 +6,15 @@ import Nav from "./Nav";
 
 const UserComponent = (props) => {
   const [uploadsLikes, updateUploadsLikes] = useState("uploads");
+  const [postcards, updatePostcards] = useState(props.user.postcards);
+
+  function handleDeletePostcard(id) {
+    props.handleDeletePostcard(id);
+    updatePostcards(props.user.postcards);
+  }
   return (
     <div>
-      <Nav currentUsername={props.currentUsername} />
+      <Nav currentUsername={props.currentUsername} logout={props.logout} />
       <Search
         handleSearch={props.handleSearch}
         updateSearchedUser={props.updateSearchedUser}
@@ -55,9 +61,11 @@ const UserComponent = (props) => {
           <h2>No uploads to display.</h2>
         ) : (
           <Timeline
-            renderPostcards={props.user.postcards}
+            renderPostcards={postcards}
             handleLike={props.handleLike}
             liked={props.liked}
+            loggedIn={props.loggedIn}
+            handleDeletePostcard={handleDeletePostcard}
           />
         )
       ) : //Timeline for likes view

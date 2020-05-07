@@ -14,11 +14,20 @@ const App = () => {
   //username of current user
   const [currentUsername, updateCurrentUsername] = useState(undefined);
   const [userIndex, updateUserIndex] = useState();
-
+  const [allPostcards, updateAllPostcards] = useState();
   const [liked, updateLiked] = useState();
   const [followed, updateFollowed] = useState();
   const [searchedUser, updateSearchedUser] = useState("");
   const [navigateSearchedUser, updateNavigateSearchedUser] = useState("");
+
+  function handleDeletePostcard(id) {
+    appController.users[userIndex].deletePostcard(id);
+    updateAllPostcards(
+      appController.users
+        .map((user) => user.postcards)
+        .reduce((prev, curr) => prev.concat(curr))
+    );
+  }
 
   function logout() {
     console.log("logout");
@@ -93,7 +102,14 @@ const App = () => {
     appController.users[userIndex].addPostcard(text);
     console.log(appController.users[userIndex].postcards);
   }
-
+  //updates allpostcards on render
+  useEffect(() => {
+    updateAllPostcards(
+      appController.users
+        .map((user) => user.postcards)
+        .reduce((prev, curr) => prev.concat(curr))
+    );
+  }, []);
   return (
     <div>
       {currentUsername === undefined ? (
@@ -114,30 +130,29 @@ const App = () => {
               path="/"
               allUsers={appController.users}
               user={appController.users[userIndex]}
-              //passes an array of all postcards to feed
-              allPostcards={appController.users
-                .map((user) => user.postcards)
-                .reduce((prev, curr) => prev.concat(curr))}
+              allPostcards={allPostcards}
               handleLike={handleLike}
               liked={appController.users[userIndex].liked}
               followed={appController.users[userIndex].followed}
             />
             {/* Logged in user component */}
             <UserComponent
+              logout={logout}
               handleSearch={handleSearch}
               updateSearchedUser={updateSearchedUser}
               path="/user"
               currentUsername={currentUsername}
               user={appController.users[userIndex]}
               allUsers={appController.users}
-              allPostcards={appController.users
-                .map((user) => user.postcards)
-                .reduce((prev, curr) => prev.concat(curr))}
+              allPostcards={allPostcards}
               handleLike={handleLike}
               liked={appController.users[userIndex].liked}
+              loggedIn={true}
+              handleDeletePostcard={handleDeletePostcard}
             />
             {/* Component for searched user */}
             <UserComponent
+              logout={logout}
               handleSearch={handleSearch}
               updateSearchedUser={updateSearchedUser}
               path="/searchuser"
@@ -146,9 +161,7 @@ const App = () => {
                 (val) => val.username === navigateSearchedUser
               )}
               allUsers={appController.users}
-              allPostcards={appController.users
-                .map((user) => user.postcards)
-                .reduce((prev, curr) => prev.concat(curr))}
+              allPostcards={allPostcards}
               handleLike={handleLike}
               liked={liked}
               handleFollow={handleFollow}
@@ -156,10 +169,12 @@ const App = () => {
             />
             {/* User not found component */}
             <UserNotFound
+              logout={logout}
               currentUsername={currentUsername}
               path="usernotfound"
             />
             <Upload
+              logout={logout}
               path="upload"
               currentUsername={currentUsername}
               handleAddPostcard={handleAddPostcard}
