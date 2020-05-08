@@ -6,10 +6,9 @@
 }
 
 .search-component input {
-  height: 3em;
+  width: 100%;
+  height: 2em;
 }
-.search-component button {
-  height: 3em;
-  padding: 0, 2em, 0, 2em;
-  border: none;
+.search-component input::placeholder {
+  text-align: center;
 }

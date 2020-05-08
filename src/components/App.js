@@ -41,7 +41,8 @@ const App = () => {
     navigate("/");
   }
 
-  function handleSearch() {
+  function handleSearch(e) {
+    e.preventDefault();
     if (
       !appController.users.map((val) => val.username).includes(searchedUser)
     ) {
@@ -178,6 +179,8 @@ const App = () => {
               logout={logout}
               currentUsername={currentUsername}
               path="usernotfound"
+              handleSearch={handleSearch}
+              updateSearchedUser={updateSearchedUser}
             />
             <Upload
               logout={logout}
