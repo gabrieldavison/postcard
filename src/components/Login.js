@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./styles/Login.css";
 const Login = (props) => {
   const [loginSignUp, updateLoginSignUp] = useState("login");
   const [username, updateUsername] = useState("");
@@ -36,9 +36,13 @@ const Login = (props) => {
     }
   }
   return (
-    <div>
-      <div>
-        <label>
+    <div className="login-component">
+      <div className="login-container">
+        <div className="login-header">
+          <h1>Postcard</h1>
+          <p>A social network curated by you and the people that you follow.</p>
+        </div>
+        <div className="login-signup-selector">
           <input
             id="login"
             type="radio"
@@ -47,9 +51,7 @@ const Login = (props) => {
             checked={loginSignUp === "login"}
             onChange={(e) => updateLoginSignUp(e.target.value)}
           />
-          Login
-        </label>
-        <label>
+          <label htmlFor="login">Login</label>
           <input
             id="signup"
             type="radio"
@@ -58,26 +60,32 @@ const Login = (props) => {
             checked={loginSignUp === "signUp"}
             onChange={(e) => updateLoginSignUp(e.target.value)}
           />
-          Sign Up
-        </label>
-      </div>
-      <form>
-        <label>Username</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => updateUsername(e.target.value)}
-        ></input>
+          <label htmlFor="signup">Sign Up</label>
+        </div>
+        <form className="login-inputs">
+          <div className="username">
+            <label>Username</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => updateUsername(e.target.value)}
+            ></input>
+          </div>
+          <div className="password">
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => updatePassword(e.target.value)}
+            ></input>
+          </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => updatePassword(e.target.value)}
-        ></input>
-        <button onClick={(e) => loginUser(e)}>Submit</button>
-        <p>{errorMessage}</p>
-      </form>
+          <button className="submit-button" onClick={(e) => loginUser(e)}>
+            Submit
+          </button>
+          <p className="error-message">{errorMessage}</p>
+        </form>
+      </div>
     </div>
   );
 };

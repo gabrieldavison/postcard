@@ -1,0 +1,61 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  font-family: "IBM Plex Mono", monospace;
+}
+.app-container {
+  height: 100%;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  margin: 0.1em;
+}
+p {
+  margin: 0.5em;
+}
+
+input[type="radio"] {
+  display: none;
+}
+label {
+  margin: 0.5em;
+  border-color: transparent;
+}
+
+input[type="radio"]:checked + label {
+  box-shadow: 0 0 0 2px;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: #000000;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+  background: #838383;
+}
+
+button:active {
+  transform: scale(0.99);
+}

@@ -8,6 +8,8 @@ import { Link, Router, navigate } from "@reach/router";
 import UserComponent from "./UserComponent";
 import UserNotFound from "./UserNotFound";
 import Upload from "./Upload";
+import "./styles/reset.css";
+import "./styles/App.css";
 //creates mock user accounts
 mockUsers();
 const App = () => {
@@ -110,8 +112,12 @@ const App = () => {
         .reduce((prev, curr) => prev.concat(curr))
     );
   }, []);
+  //Logs in user for testing purposes
+  useEffect(() => {
+    handleLoginUser("gabrieldavison", "password");
+  }, []);
   return (
-    <div>
+    <div className="app-container">
       {currentUsername === undefined ? (
         <Login
           loginUser={handleLoginUser}

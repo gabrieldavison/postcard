@@ -1,0 +1,15 @@
+.search-component {
+  height: 3em;
+  width: 50%;
+  text-align: center;
+  margin: auto;
+}
+
+.search-component input {
+  height: 3em;
+}
+.search-component button {
+  height: 3em;
+  padding: 0, 2em, 0, 2em;
+  border: none;
+}
